@@ -12,14 +12,14 @@ SHELL=/bin/bash
 0 */5 * * * /bin/bash -c 'sleep $((60 + RANDOM \% 241))' && /usr/local/bin/python -m hh_applicant_tool update-resumes >> /var/log/cron.log 2>&1
 
 # Рассылаем отклики
-0 8-21 * * * /bin/bash -c 'sleep $((60 + RANDOM \% 241))' && /usr/local/bin/python -m hh_applicant_tool apply-vacancies -l /app/letter.txt -f --excluded-filter 'junior|стажировк|bitrix|ddd|web3|crypto|blockchain|дружн\\w+коллектив|полиграф|open\\s*space|опенспейс|хакатон|конкурс|тестов\\w+ задан|soft skill' >> /var/log/cron.log 2>&1
+#0 8-21 * * * /bin/bash -c 'sleep $((60 + RANDOM \% 241))' && /usr/local/bin/python -m hh_applicant_tool #apply-vacancies -l /app/letter.txt -f --excluded-filter 'junior|стажировк|bitrix|ddd|web3|crypto|blockchain|#дружн\\w+коллектив|полиграф|open\\s*space|опенспейс|хакатон|конкурс|тестов\\w+ задан|soft skill' >> /var/log/cron.#log 2>&1
 
 # Тест: каждые 5 минут (задержка до 1 минуты, чтобы не накладывались)
-#*/5 * * * * /bin/bash -c 'sleep $((1 + RANDOM \% 59))' && /usr/local/bin/python -m hh_applicant_tool apply-vacancies >> /var/log/cron.log 2>&1
+#*/5 * * * * /bin/bash -c 'sleep $((1 + RANDOM \% 59))' && /usr/local/bin/python -m hh_applicant_tool #apply-vacancies >> /var/log/cron.log 2>&1
 
 # Пытаемся обновить токен каждую минуту. В этом нет необходимости, можно закомментировать, так как
 # токен обновляется автоматически при любом запросе
-*/1 * * * * /usr/local/bin/python -m hh_applicant_tool refresh-token
+#*/1 * * * * /usr/local/bin/python -m hh_applicant_tool refresh-token
 
 # Раскомментируй, если хочешь удалять чаты с отказами
 #0 */1 * * * /bin/bash -c 'sleep $((60 + RANDOM \% 241))' && /usr/local/bin/python -m hh-applicant-tool clear-negotiations -d >> /var/log/cron.log 2>&1
